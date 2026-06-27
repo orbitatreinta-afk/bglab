@@ -368,7 +368,7 @@ export default function DifyChatWidget() {
             </button>
           </div>
           <p className="text-center text-gray-300 text-[10px] mt-1.5">
-            Laboratorio Baldomá-Gregorini · Rosario, Santa Fe
+            Laboratorio Baldomá-Gregorini · San Lorenzo, Santa Fe
           </p>
         </div>
       </div>
@@ -381,7 +381,7 @@ export default function DifyChatWidget() {
         className={`
           fixed z-[999] right-4
           /* Encima del botón de WhatsApp (que está a ~80px) */
-          bottom-[140px]
+          bottom-[100px]
           w-14 h-14
           rounded-full shadow-lg
           flex items-center justify-center
@@ -389,8 +389,8 @@ export default function DifyChatWidget() {
           bg-ibta-primary hover:bg-ibta-dark
         `}
         style={{
-          backgroundImage: "url('/logo-clinica.png')",
-          backgroundSize: "65%",
+          backgroundImage: "url('/chat.png')",
+          backgroundSize: "80%",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}

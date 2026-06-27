@@ -83,10 +83,11 @@ export default function BeneficiosSection() {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] z-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Título Principal de la sección */}
+        {/* Título Principal de la sección adaptado al diseño común */}
         <div className="beneficios-title text-center mb-10 md:mb-14">
-          <h2 className="text-gray-900 text-xl md:text-2xl lg:text-3xl font-bold tracking-tight leading-snug">
-            <strong>Estamos para ayudarte</strong>
+          <h2 className="text-ibta-dark text-xl md:text-2xl lg:text-3xl tracking-wider uppercase relative inline-block pb-3">
+            <strong className="font-bold">Estamos para</strong> ayudarte
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-ibta-primary rounded-full"></span>
           </h2>
         </div>
 

@@ -118,7 +118,7 @@ const indicacionesIzquierda = [
       "• Cumpla estrictamente los horarios y recoja **TODO** el volumen de orina.",
       "• Remita al laboratorio **dentro de las 2 horas** de finalizada la recolección. Por excepción, mantenga en heladera como máximo 2 horas.",
       "• Si el estudio es **Microalbuminuria**, evite realizar actividad física intensa.",
-      "• Se recomienda **NO recolectar** en el **período menstrual**.",
+      "• Se recomienda **NO recolectar** en el **períero menstrual**.",
       "",
       "📝 **REGISTRE al entregar:** Peso y Altura del paciente."
     ]
@@ -334,7 +334,7 @@ export default function InformacionSection() {
     return () => ctx.revert();
   }, []);
 
-  // Función mágica para convertir los asteriscos **texto** en elementos HTML <strong> reales de React
+  // Función para convertir los asteriscos **texto** en elementos HTML <strong> reales de React
   const renderTextoConFormato = (linea: string) => {
     if (!linea) return <div className="h-2" />; // Si es línea vacía, hace de separador de párrafo
 
@@ -367,10 +367,11 @@ export default function InformacionSection() {
       </div>
 
       <div className="relative z-10 px-4 md:px-8 lg:px-12 py-10 md:py-14 lg:py-16">
-        {/* Título principal */}
+        {/* Título principal con la misma tipografía y detalle inferior */}
         <div className="info-animate mb-8 md:mb-10">
-          <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-light">
+          <h2 className="text-white text-xl md:text-2xl lg:text-3xl tracking-wider uppercase relative inline-block pb-3">
             <strong className="font-bold">Información</strong> para pacientes
+            <span className="absolute bottom-0 left-0 w-12 h-1 bg-ibta-primary rounded-full"></span>
           </h2>
         </div>
 

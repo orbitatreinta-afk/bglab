@@ -47,17 +47,18 @@ export default function PoliticaCalidadSection() {
       id="politica-de-calidad"
       className="relative w-full bg-white overflow-hidden"
     >
-      <div className="flex flex-col lg:flex-row">
-        {/* Sidebar azul con título vertical */}
-        <div className="w-full lg:w-20 bg-ibta-primary flex items-center justify-center py-3 lg:py-12 flex-shrink-0">
-          <h2 className="text-white font-bold text-sm md:text-sm lg:text-base lg:writing-mode-vertical lg:-rotate-180 whitespace-nowrap tracking-wider uppercase lg:py-8">
+      <div className="px-4 md:px-8 lg:px-16 py-8 md:py-12 lg:py-16">
+        {/* Título horizontal con el detalle de la línea azul en el pie */}
+        <div className="pol-animate mb-8">
+          <h2 className="text-ibta-dark font-bold text-xl md:text-2xl lg:text-3xl tracking-wider uppercase relative inline-block pb-3">
             Obras sociales
+            <span className="absolute bottom-0 left-0 w-12 h-1 bg-ibta-primary rounded-full"></span>
           </h2>
         </div>
 
         {/* Contenido */}
-        <div className="flex-1 flex flex-col lg:flex-row">
-          <div className="flex-1 px-4 md:px-8 lg:px-12 py-8 md:py-10 lg:py-14">
+        <div className="w-full flex flex-col lg:flex-row gap-8 lg:gap-12">
+          <div className="flex-1">
             <div className="pol-animate max-w-3xl">
               <div className="text-gray-700 text-sm md:text-base leading-relaxed space-y-4">
                 <p>
@@ -95,7 +96,7 @@ export default function PoliticaCalidadSection() {
                   <p className="font-bold text-ibta-dark text-lg">
                     Administración
                   </p>
-                  <p className="text-gray-500 text-sm">Aguardamos tu mensaje</p>
+                  <p className="text-gray-500 text-sm">Aguardamos tu message</p>
                   <p className="text-gray-400 text-xs mt-1">Versión 04 - 11/Jun/2026</p>
                 </div>
 
@@ -126,22 +127,16 @@ export default function PoliticaCalidadSection() {
             </div>
           </div>
 
-          {/* Imagen microscopio */}
-          <div className="pol-animate w-full lg:w-[360px] flex-shrink-0 flex items-end justify-end">
+            {/* Imagen indicaciones */}
+            <div className="pol-animate w-full lg:w-[500px] flex-shrink-0 flex items-end justify-end">
             <img
-              src="https://www.ibta.com.ar/img/imagenCalidad.png"
-              alt="Microscopio profesional"
-              className="w-full h-auto object-contain"
-            />
+                src="/papel.png"
+                alt="Indicaciones en papel"
+                className="w-full h-auto object-contain"
+              />
           </div>
         </div>
       </div>
-
-      <style>{`
-        .lg\\:writing-mode-vertical {
-          writing-mode: vertical-rl;
-        }
-      `}</style>
     </section>
   );
 }
