@@ -8,8 +8,8 @@ gsap.registerPlugin(ScrollTrigger);
 const cardsInfo = [
   {
     id: 1,
-    titulo: "Solicitar extracción a domicilio.",
-    descripcion: "Contamos con el servicio de extracción domiciliaria, brindándote la posibilidad de acceder a la toma de la muestra en tu casa particular, hogar, centro de día, o institución privada.",
+    titulo: "Solicitá extracción a domicilio aquí",
+    descripcion: "Contamos con el servicio de extracción domiciliaria en tu casa particular, hogar o institución privada. Hacé click acá para coordinar tu turno por WhatsApp.",
     img: "/domicilio.jpeg",
     alt: "Atención domiciliaria"
   },
@@ -73,6 +73,15 @@ export default function BeneficiosSection() {
     return () => ctx.revert();
   }, []);
 
+  const handleCardClick = (id: number) => {
+    if (id === 1) {
+      window.open(
+        "https://wa.me/5493413000000?text=Hola%2C%20me%20comunico%20para%20solicitar%20una%20extracci%C3%B3n%20a%20domicilio",
+        "_blank"
+      );
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -96,6 +105,7 @@ export default function BeneficiosSection() {
           {cardsInfo.map((card) => (
             <div
               key={card.id}
+              onClick={() => handleCardClick(card.id)}
               className="beneficio-card group relative h-[320px] md:h-[380px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl transition-all duration-500 cursor-pointer"
             >
               {/* Imagen de fondo de la tarjeta */}

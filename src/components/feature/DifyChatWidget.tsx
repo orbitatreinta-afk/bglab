@@ -15,8 +15,13 @@ interface DifyChunkResponse {
   message_id?: string;
 }
 
+interface DifyChatWidgetProps {
+  isOpenExternal?: boolean;
+  setIsOpenExternal?: (isOpen: boolean) => void;
+  initialMessage?: string;
+}
+
 // ─── Constants ────────────────────────────────────────────────────────────────
-// Apunta a la función serverless de Netlify (proxy seguro definido en netlify.toml)
 const DIFY_API_URL = "/api-dify";
 
 const SUGGESTED_QUESTIONS = [
@@ -39,7 +44,11 @@ function renderContent(text: string) {
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function DifyChatWidget() {
+export default function DifyChatWidget({ 
+  isOpenExternal, 
+  setIsOpenExternal, 
+  initialMessage 
+}: DifyChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -49,6 +58,24 @@ export default function DifyChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+
+  // Sincronizar el estado interno si se abre desde el componente padre
+  useEffect(() => {
+    if (isOpenExternal !== undefined) {
+      setIsOpen(isOpenExternal);
+      if (isOpenExternal) {
+        // Inicializar la sesión limpia como pide tu función nativa
+        setMessages([]);
+        setConversationId("");
+        setShowSuggestions(true);
+        
+        // Si hay mensaje predefinido externo, inyectarlo en la caja de texto
+        if (initialMessage) {
+          setInput(initialMessage);
+        }
+      }
+    }
+  }, [isOpenExternal, initialMessage]);
 
   // Auto-scroll al último mensaje
   useEffect(() => {
@@ -64,24 +91,26 @@ export default function DifyChatWidget() {
 
   // Abrir/cerrar chat — nueva sesión cada vez que se abre
   const handleToggle = useCallback(() => {
+    const nextState = !isOpen;
     if (!isOpen) {
-      // Sesión nueva: limpiar historial y conversation_id
       setMessages([]);
       setConversationId("");
       setShowSuggestions(true);
     } else {
-      // Cancelar stream activo si se cierra mientras carga
       abortRef.current?.abort();
     }
-    setIsOpen((prev) => !prev);
-  }, [isOpen]);
+    
+    setIsOpen(nextState);
+    if (setIsOpenExternal) {
+      setIsOpenExternal(nextState);
+    }
+  }, [isOpen, setIsOpenExternal]);
 
   // Enviar mensaje a Dify via streaming
   const sendMessage = useCallback(
     async (text: string) => {
       if (!text.trim() || isLoading) return;
 
-      // Generador de ID manual para evitar fallas de entorno seguro (crypto.randomUUID) en local
       const generateUUID = () =>
         Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
 
@@ -97,7 +126,6 @@ export default function DifyChatWidget() {
       setIsLoading(true);
       setShowSuggestions(false);
 
-      // Placeholder del asistente mientras llega el stream
       const assistantId = generateUUID();
       setMessages((prev) => [
         ...prev,
@@ -111,9 +139,6 @@ export default function DifyChatWidget() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // El header Authorization NO va acá. Lo agrega la Netlify Function
-            // (netlify/functions/dify-chat.ts) del lado del servidor, leyendo
-            // la variable de entorno DIFY_API_KEY.
           },
           body: JSON.stringify({
             inputs: {},
@@ -128,12 +153,12 @@ export default function DifyChatWidget() {
         if (!res.ok) {
           if (res.status === 401) {
             throw new Error(
-              "Error 401: No autorizado. Revisá que DIFY_API_KEY esté bien configurada en Netlify → Site configuration → Environment variables, y que hayas re-desplegado el sitio después de agregarla."
+              "Error 401: No autorizado. Revisá que DIFY_API_KEY esté bien configurada en Netlify..."
             );
           }
           if (res.status === 404) {
             throw new Error(
-              "Error 404: No se encontró la función. Verificá que netlify/functions/dify-chat.ts exista y que netlify.toml tenga el redirect a /.netlify/functions/dify-chat."
+              "Error 404: No se encontró la función. Verificá que netlify/functions/dify-chat.ts exista..."
             );
           }
           throw new Error(`Error del servidor Dify (Status ${res.status}).`);
@@ -170,7 +195,7 @@ export default function DifyChatWidget() {
                 setConversationId(data.conversation_id);
               }
             } catch {
-              // chunk incompleto, continuar
+              // chunk incompleto
             }
           }
         }
@@ -183,7 +208,7 @@ export default function DifyChatWidget() {
 
           if (err.message.includes("Failed to fetch")) {
             errorMessage =
-              "Error de conexión. Si estás probando en local, recordá usar 'netlify dev' (en vez de 'npm run dev' solo) para que la función serverless esté disponible.";
+              "Error de conexión. Si estás probando en local, recordá usar 'netlify dev'...";
           } else {
             errorMessage = err.message;
           }
@@ -327,7 +352,6 @@ export default function DifyChatWidget() {
                 }`}
               >
                 {msg.content === "" && msg.role === "assistant" ? (
-                  // Typing indicator
                   <span className="flex items-center gap-1 py-1">
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0ms]" />
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:150ms]" />
@@ -380,7 +404,6 @@ export default function DifyChatWidget() {
         aria-expanded={isOpen}
         className={`
           fixed z-[999] right-4
-          /* Encima del botón de WhatsApp (que está a ~80px) */
           bottom-[100px]
           w-14 h-14
           rounded-full shadow-lg
@@ -395,7 +418,6 @@ export default function DifyChatWidget() {
           backgroundPosition: "center",
         }}
       >
-        {/* Fallback si no carga la imagen */}
         <span className="sr-only">BG</span>
       </button>
     </>
