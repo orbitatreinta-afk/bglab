@@ -36,7 +36,19 @@ export default function Header() {
     const video = videoRef.current;
     if (!video) return;
 
+    // Forzar propiedades nativas indispensables para iOS de forma programática
     video.muted = true;
+    video.playsInline = true;
+
+    // Intento de reproducción forzada para mitigar bloqueos de políticas de Safari
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (err) {
+        console.log("La reproducción automática fue prevenida por el navegador, reintentando...", err);
+      }
+    };
+    playVideo();
 
     const handleLoadedMetadata = () => {
       video.currentTime = VIDEO_START;
@@ -151,7 +163,7 @@ export default function Header() {
             ref={videoRef}
             src={VIDEO_URL}
             autoPlay
-            muted={true}
+            muted
             playsInline
             preload="auto"
             loop
