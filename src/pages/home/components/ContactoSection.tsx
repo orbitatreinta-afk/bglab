@@ -54,7 +54,7 @@ export default function ContactoSection() {
                 <p className="font-bold text-ibta-dark mb-2">Horarios de atención</p>
                 <p className="text-gray-600">
                   <i className="ri-arrow-right-s-line text-ibta-primary"></i>{" "}
-                  Lunes a Viernes de 7 a 19 hs. Sábados: 7:30 a 13 hs.
+                  Lunes a Viernes de 7 a 12 hs y de 16 a 19 hs. Sábados: 8 a 12 hs.
                 </p>
               </div>
 
@@ -62,7 +62,7 @@ export default function ContactoSection() {
                 <p className="font-bold text-ibta-dark mb-2">Horarios de extracciones</p>
                 <p className="text-gray-600">
                   <i className="ri-arrow-right-s-line text-ibta-primary"></i>{" "}
-                  Lunes a Viernes de 7 a 9:30 hs. Sábado de 7:30 a 9:30 hs.
+                  Lunes a Viernes de 7 a 10 hs. Sábado de 8 a 10 hs.
                 </p>
               </div>
 
@@ -73,21 +73,6 @@ export default function ContactoSection() {
                 </p>
               </div>
 
-              <div>
-                <p className="font-bold text-ibta-dark mb-2">Autorización de órdenes</p>
-                <p className="text-gray-600">
-                  Para consultas sobre autorizaciones o transferencias llamá al 123456 de 7 a 19 hs. o mandanos tu orden por WhatsApp al 123456 y la enviamos a autorizar en el caso que lo requiera.
-                </p>
-              </div>
-
-              <div>
-                <p className="font-bold text-ibta-dark mb-2">Guardia pasiva para urgencias</p>
-                <p className="text-gray-600">
-                  Lunes a viernes, a partir de las 19 hs, sábado a partir de las 13 hs y domingo y feriados todo el día.
-                  <br />
-                  Teléfono: (03476) 123456.
-                </p>
-              </div>
             </div>
           </div>
 
@@ -179,14 +164,14 @@ export default function ContactoSection() {
       {/* Mapa */}
       <div id="mapa" className="w-full h-64 md:h-80 lg:h-96 bg-gray-100">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.0!2d-60.7667!3d-32.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDQ1JzAwLjAiUyA2MMKwNDYnMDAuMCJX!5e0!3m2!1ses!2sar!4v1600000000000!5m2!1ses!2sar"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3355.710311520822!2d-60.733771999999995!3d-32.7468821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b65be524dacd8f%3A0x7e5a60945bff16f7!2sLaboratorio%20bioquimico%20Baldoma-Gregorini!5e0!3m2!1ses!2sar!4v1782762249269!5m2!1ses!2sar"
           width="100%"
           height="100%"
           style={{ border: 0 }}
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Ubicación Laboratorio IBTA"
+          title="Ubicación Laboratorio"
         ></iframe>
       </div>
     </section>

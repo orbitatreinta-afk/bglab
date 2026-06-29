@@ -3,7 +3,7 @@ import React from 'react';
 export const WhatsappButton: React.FC = () => {
   // Reemplaza con tu número (incluyendo código de país, sin espacios ni el signo +)
   // Ejemplo: 549341XXXXXXX (para Rosario/Argentina)
-  const phoneNumber = "549341XXXXXXX"; 
+  const phoneNumber = "5493476586883"; 
   const message = encodeURIComponent("¡Hola! Quería hacer una consulta.");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 

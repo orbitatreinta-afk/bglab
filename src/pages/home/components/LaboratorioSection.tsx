@@ -134,21 +134,21 @@ export default function LaboratorioSection() {
             relative_time_description: "hace 4 meses",
           },
           {
-            author_name: "Paciente",
+            author_name: "Cristina Mirian Corujo",
             rating: 5,
-            text: "Siempre muy amables, muy buena atención... y rápida. Lo que más me gusta que tratan a los abuelos con mucho amor, cosa que no en todos los lugares atienden así.",
+            text: "Excelentes profesionales.... Atentos cordiales... Abocados totalmente a la salud de todos nosotros...",
             relative_time_description: "hace unos meses",
           },
           {
-            author_name: "Paciente",
+            author_name: "Marta Chinellato",
             rating: 5,
-            text: "Excelente atención, poca espera.",
+            text: "Excelente atención, corta espera.",
             relative_time_description: "hace unos meses",
           },
           {
-            author_name: "Paciente",
+            author_name: "Georgina Sarco",
             rating: 5,
-            text: "Excelente atención y muy rápido 😊",
+            text: "Siempre muy amables,muy buena atención...y rápida.. Lo que más me gusta que tratan a los abuelos con mucho amor ...cosa que no en todos los lugares atienden así .. felicitaciones",
             relative_time_description: "hace unos meses",
           },
         ]);

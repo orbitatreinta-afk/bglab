@@ -76,7 +76,7 @@ export default function BeneficiosSection() {
   const handleCardClick = (id: number) => {
     if (id === 1) {
       window.open(
-        "https://wa.me/5493413000000?text=Hola%2C%20me%20comunico%20para%20solicitar%20una%20extracci%C3%B3n%20a%20domicilio",
+        "https://wa.me/5493476586883?text=Hola%2C%20me%20comunico%20para%20solicitar%20una%20extracci%C3%B3n%20a%20domicilio",
         "_blank"
       );
     }

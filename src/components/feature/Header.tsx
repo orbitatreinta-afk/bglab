@@ -36,16 +36,14 @@ export default function Header() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Forzar propiedades nativas indispensables para iOS de forma programática
     video.muted = true;
     video.playsInline = true;
 
-    // Intento de reproducción forzada para mitigar bloqueos de políticas de Safari
     const playVideo = async () => {
       try {
         await video.play();
       } catch (err) {
-        console.log("La reproducción automática fue prevenida por el navegador, reintentando...", err);
+        console.log("Reproducción automática prevenida (modo ahorro de energía u otra restricción).");
       }
     };
     playVideo();
@@ -156,8 +154,8 @@ export default function Header() {
 
       {/* Hero con altura fija */}
       <div className="relative w-full bg-slate-900 h-[640px] md:h-[780px] overflow-hidden -mt-[72px]">
-        {/* Video de fondo con capa transparente al 35% */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Video de fondo */}
+        <div className="absolute inset-0 overflow-hidden bg-slate-900">
           <video
             key={VIDEO_URL}
             ref={videoRef}
@@ -167,7 +165,7 @@ export default function Header() {
             playsInline
             preload="auto"
             loop
-            className="w-full h-full object-cover origin-top scale-100"
+            className="w-full h-full object-cover origin-top scale-100 pointer-events-none"
           />
           <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[0.5px]" />
         </div>
@@ -201,7 +199,6 @@ export default function Header() {
               {/* Tarjeta Horario de Atención */}
               <div className="w-full max-w-sm bg-slate-950/40 border border-white/20 rounded-2xl p-5 backdrop-blur-md shadow-2xl transition-transform duration-300 hover:scale-[1.01]">
                 <div className="flex items-center gap-3.5 mb-3">
-                  {/* Icono Reloj Clínico Blanco */}
                   <svg className="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="10" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
@@ -209,13 +206,17 @@ export default function Header() {
                   <h3 className="text-white font-bold text-xs tracking-wider uppercase">Horarios de Atención</h3>
                 </div>
                 <div className="space-y-2 text-xs text-white font-medium pl-8">
-                  <div className="flex justify-between border-b border-white/10 pb-1.5">
+                  <div className="flex justify-between">
                     <span className="opacity-80">Lunes a Viernes:</span>
-                    <span className="font-bold">07:00 a 16:00 hs</span>
+                    <span className="font-bold">07:00 a 12:00 hs</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/10 pb-1.5">
+                    <span className="opacity-80"></span>
+                    <span className="font-bold">16:00 a 19:00 hs</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="opacity-80">Sábados:</span>
-                    <span className="font-bold">08:00 a 11:30 hs</span>
+                    <span className="font-bold">08:00 a 12:00 hs</span>
                   </div>
                 </div>
               </div>
@@ -223,7 +224,6 @@ export default function Header() {
               {/* Tarjeta Horario de Extracción */}
               <div className="w-full max-w-sm bg-slate-950/40 border border-white/20 rounded-2xl p-5 backdrop-blur-md shadow-2xl transition-transform duration-300 hover:scale-[1.01]">
                 <div className="flex items-center gap-3.5 mb-3">
-                  {/* Icono Matraz Blanco */}
                   <svg className="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 3h6M10 3v6.172a2 2 0 01-.586 1.414l-4.828 4.828A2 2 0 006 18.828h12a2 2 0 001.414-3.414l-4.828-4.828A2 2 0 0114 9.172V3" />
                     <path d="M7.5 14.5h9" opacity="0.3" stroke="currentColor" />
@@ -233,7 +233,7 @@ export default function Header() {
                 <div className="space-y-2 text-xs text-white font-medium pl-8">
                   <div className="flex justify-between border-b border-white/10 pb-1.5">
                     <span className="opacity-80">Lunes a Viernes:</span>
-                    <span className="font-bold">07:00 a 11:00 hs</span>
+                    <span className="font-bold">07:00 a 10:00 hs</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="opacity-80">Sábados:</span>

@@ -31,12 +31,12 @@ export default function PoliticaCalidadSection({ onOpenChat }: PoliticaCalidadPr
   }, []);
 
   const handleAbrirChat = () => {
-    onOpenChat("Trabajan con (insertá tu obra social), ¿cuales son los requisitos?");
+    onOpenChat("¿Trabajan con (insertá tu obra social)?");
   };
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/5493413000000?text=Hola%2C%20me%20quiero%20atender%20como%20particular%2C%20me%20podes%20mandar%20el%20presupuesto%20para%20realizarme%20los%20siguientes%20an%C3%A1lisis%3A%20-DETALLE%20EL%20ANALISIS%20QUE%20DESEA%20REALIZARSE",
+      "https://wa.me/5493476586883?text=Hola%2C%20me%20quiero%20atender%20como%20particular%2C%20me%20podes%20mandar%20el%20presupuesto%20para%20realizarme%20los%20siguientes%20an%C3%A1lisis%3A%20-DETALLE%20EL%20ANALISIS%20QUE%20DESEA%20REALIZARSE",
       "_blank"
     );
   };
